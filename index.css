@@ -1,0 +1,692 @@
+/* Menu estilo Dropdown con animación slide-down */
+/* 1. BASE */
+* {box-sizing: border-box;
+  margin: 0;
+  padding: 0;}
+
+body {
+  font-family: system-ui, sans-serif;}
+
+/* 2. HEADER LAYOUT y FIJA */
+header, #header, #mainHeader {
+  position: fixed;    /sticky/
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 88px;
+  background: rgba(0,0,0,.25);
+  backdrop-filter: blur(6px);
+  transition: background .35s ease, box-shadow .35s ease;
+  overflow: visible;      /visibilidad a los submenus/
+  z-index: 9999;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.35);}
+
+#mainHeader.is-scrolled {
+  background: rgba(0,0,0,.9);
+  box-shadow: 0 10px 40px rgba(0,0,0,.6);}
+
+
+.header-container {
+  max-width: 1400px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  gap: 28px;}
+  :root {
+  --header-height: 88px;
+}
+
+
+/*  3. LOGO */
+.logo {
+  height: 56px;}
+
+/*  4. Centrado del MENU PRINCIPAL */
+.nav {
+  margin-left: 30px;
+  margin-right: auto;  /* empuja pero deja espacio al botón derecho */}
+
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 26px;}
+
+.menu-item {
+  position: relative;}
+
+.menu-item > a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 12px 6px;
+  display: inline-block;
+  transition: color 0.25s ease, transform 0.25s ease; /Hover/}
+.menu-item > a:hover {
+  color: #d4af37;
+  transform: translateY(-2px);}
+
+/*  5. SUBMENUS  */
+.submenu {    /* Base del submenu: oculto por defecto */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  background: rgba(15,15,15,0.95); /* fondo oscuro semi-transparente */
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+  overflow: hidden;
+
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-12px);
+  pointer-events: none;
+
+  transition: max-height 0.35s ease, opacity 0.25s ease, transform 0.25s ease;
+}
+@media (max-width: 1024px) {/MOBILE/
+  .submenu {
+    position: static;
+    max-height: 0;
+    opacity: 0;
+    transform: none;
+    pointer-events: none;}
+
+  .submenu.open {
+    max-height: 500px;
+    opacity: 1;
+    pointer-events: auto;}}
+/* Enlaces del submenu */
+.submenu li a {
+  display: block;
+  padding: 10px 20px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.92rem;
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s;}
+
+.submenu li a:hover {
+  background: linear-gradient(90deg, rgba(255,215,0,0.15), rgba(255,215,0,0.35));
+  color: #ffd700; /* dorado estilo LoL */}
+
+/* Mostrar submenu al pasar el mouse en desktop */
+.menu-item.has-submenu:hover > .submenu {
+  max-height: 500px;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;}
+
+  /* ================= BOTÓN MAS ================= */
+.more-wrapper {
+  position: relative;}
+
+.more-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 12px 6px;
+  cursor: pointer;}
+
+.more-btn .arrow {
+  font-size: 12px;
+  transition: transform .25s ease;}
+
+/* Dropdown */
+.more-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 180px;
+  background: #0b0b0b;
+  border-radius: 0 0 12px 12px;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition:
+    max-height .35s ease,
+    opacity .25s ease,
+    transform .25s ease;}
+
+.more-menu li a {
+  display: block;
+  padding: 12px 18px;
+  color: #fff;
+  text-decoration: none;}
+
+.more-menu li a:hover {
+  background: rgba(255,255,255,.08);}
+
+/* Estado abierto */
+.more-wrapper.is-open .more-menu {
+  max-height: 500px;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;}
+
+.more-wrapper.is-open .arrow {
+  transform: rotate(180deg);}
+
+/* 6. BOTON COMPULSAS ---------- */
+.compulsas-wrapper {
+  position: relative;}
+
+.compulsas-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg,#d4af37,#b08b2e);
+  color: #111111;
+  font-weight: 700;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 18px;
+  cursor: pointer;}
+
+.compulsas-btn .arrow {
+  transition: transform .3s ease;}
+
+.compulsas-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+  background: linear-gradient(135deg,#d4af37,#b08b2e);   /Fondo de opciones Departamentales/
+  border-radius: 12px;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  list-style: none;
+  margin: 0;
+  padding: 6px 0;
+  transition: max-height .35s ease, opacity .25s ease, transform .25s ease;}
+
+  .compulsas-wrapper.is-open .compulsas-menu {
+  max-height: 600px;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;}
+
+/* 6.1 Comportamiento de la Flecha que rota al accionarlo*/
+.compulsas-wrapper.is-open .arrow {
+  transform: rotate(180deg);}
+
+/* 6.2 Definiendo el estilo de las opciones delntro el boton Compulsas*/
+  .compulsas-menu li a {
+  display: flex;
+  padding: 8px 16px;
+  color: #000000;          /* Letras negras */
+  font-weight: 600;        /* Un poco más gorditas */
+  text-decoration: none;   /* Quitar subrayado */
+  font-size: 15px;
+  transition: background 0.25s ease;}
+
+.compulsas-menu li a:hover {  /* Hover bonito */
+  background-color: rgba(0, 0, 0, 0.12);}
+
+/* 6.3 ICONOS DEPARTAMENTALES */
+.compulsas-menu li a i {
+  font-size: 16px;
+  opacity: 0.85;}
+
+/* 6.4 EFECTO HOVER DE OPCIONES */
+.compulsas-menu li a:hover {
+  background-color: rgba(133, 0, 11, 0.12);}
+
+/* ----------------- STREAMING EN VIVO */
+.streaming-wrapper {
+  margin-left: 18px;}
+
+.streaming-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 16px;
+  border-radius: 999px;
+
+  background: linear-gradient(135deg, #c62828, #ff5252);
+  color: #fff;
+  text-decoration: none;
+
+  box-shadow: 0 6px 18px rgba(255,82,82,.45);
+  transition: transform .25s ease, box-shadow .25s ease;}
+
+.streaming-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(255,82,82,.65);}
+
+/* Texto */
+.streaming-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;}
+
+.streaming-text strong {
+  font-size: 0.9rem;}
+
+.streaming-text small {
+  font-size: 0.7rem;
+  opacity: .9;}
+
+/* Punto LIVE */
+.live-dot {
+  width: 10px;
+  height: 10px;
+  background: #ffeb3b;
+  border-radius: 50%;
+  box-shadow: 0 0 0 rgba(255,235,59,.8);
+  animation: pulse 1.6s infinite;}
+
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(255,235,59,.9); }
+  70%  { box-shadow: 0 0 0 10px rgba(255,235,59,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,235,59,0); }}
+
+  /Indicador de Notificación de Streaming/
+  .stream-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ffeb3b;
+  color: #111;
+  font-size: 0.65rem;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50px;
+  animation: pulseBadge 1.6s infinite;}
+
+@keyframes pulseBadge {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }}
+
+/---------------------- BOTÓN HAMBURGUESA AJUSTADO ---------------------------/
+.menu-toggle {
+  margin-left: auto;        /* empuja el botón a la derecha */
+  display: none;            /* visible solo en mobile */
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;              /* un poquito más grande */
+  height: 30px;
+  background: rgba(0,0,0,0.8); /* relleno*/
+  border: 2px solid #2c0606;   /* borde plomo oscuro */
+  border-radius: 8px;
+  padding: 4px;
+  cursor: pointer;
+  position: relative;
+  z-index: 10000;}   /* asegurar que esté encima de todo */
+
+.menu-toggle span {
+  display: block;
+  height: 2.5px;             /* líneas más delgadas */
+  width: 100%;
+  background: #ccc;       /* líneas plomo claro */
+  border-radius: 3px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  margin: 2px 0;}           /* reduce el espacio entre líneas */
+.menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translateY(7px);}
+.menu-toggle.active span:nth-child(2) { opacity: 0;}
+.menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translateY(-7px);}
+
+/* Visible solo en mobile */
+@media (max-width: 1024px) {
+  .menu-toggle { display: flex;}}
+
+/=========================== CONTENIDO ========================0/
+#mainContent {
+  position: relative;
+  z-index: 1;
+  padding-top: var(--header-height);}
+/* ================= HERO BANNER ANIMADO ESTILO LOL ================= */
+
+:root {
+  --hero-bg1: #7b0000;
+  --hero-bg2: #a50000;
+  --hero-bg3: #c40000;
+  --hero-bg4: #d36b2c;
+  --btn-bg: #ffd700;
+  --btn-hover-bg: #e5c300;}
+
+.hero-banner {
+   position: relative;        /* contenedor padre */
+   min-height: 100vh;         /* NO height fijo */
+   overflow: hidden;          /* corta overlays */
+   display: flex;             /Separador entre Banner Hero y Section Noticias/
+   align-items: center;
+   justify-content: center;
+   z-index: 0;}
+
+ .hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90vh;
+  min-height: 600px;
+  
+  background: linear-gradient(
+      120deg,
+      var(--hero-bg1),
+      var(--hero-bg2),
+      var(--hero-bg3),
+      var(--hero-bg4));
+
+  animation: heroGradient 12s ease infinite;
+  background-size: 400% 400%;
+  z-index: 0;}
+
+@keyframes heroGradient {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 50% 50%; }
+  50% { background-position: 100% 50%; }
+  75% { background-position: 50% 100%; }
+  100% { background-position: 0% 50%; }}
+
+.hero-content {
+  position: relative;
+  text-align: center;
+  color: #fff;
+  z-index: 2;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 32px;
+  text-align: center;
+  transform: none;}
+
+.hero-title {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 78px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  text-shadow: 0px 0px 18px rgba(0, 0, 0, 0.65);}
+
+.hero-subtitle {
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 30px;
+  text-shadow: 0px 0px 14px rgba(0, 0, 0, 0.6);}
+
+.hero-btn {
+  display: inline-block;
+  padding: 18px 38px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #111;
+  background: var(--btn-bg);
+  border-radius: 50px;
+  text-decoration: none;
+  transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0px 6px 22px rgba(255, 215, 0, 0.45);
+}
+
+.hero-btn:hover {
+  background: var(--btn-hover-bg);
+  transform: translateY(-3px);
+  box-shadow: 0px 10px 28px rgba(255, 215, 0, 0.65);}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .hero-title { font-size: 60px; }
+  .hero-subtitle { font-size: 20px; }
+  .hero-btn { font-size: 18px; padding: 16px 32px; }
+}
+
+@media (max-width: 600px) {
+  .hero-title { font-size: 46px; }
+  .hero-subtitle { font-size: 18px; }
+  .hero-btn { font-size: 16px; padding: 14px 28px; }
+}
+@media (max-width: 768px) {
+  .hero-content {
+    transform: translateY(20px); }
+}
+
+/* ===================== SECCIÓN NOTICIAS ===================== */
+#noticias {
+  position: relative;
+  z-index: 1;
+  margin-top: 0;
+  padding-top: 60px;}
+
+.news-section {
+  background: #0b0b0b;
+  padding: 60px 40px;
+  color: #fff;}
+
+.news-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 3fr 1fr; /* contenido | índice */
+  gap: 30px;}
+
+/* ===== COLUMNA IZQUIERDA ===== */
+.news-content {
+  width: 100%;}
+
+/* Reorganización del grid existente */
+.news-grid-2x2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;}
+
+/* ===== COLUMNA DERECHA ===== */
+.news-sidebar {
+  border-left: 1px solid rgba(255,255,255,0.1);
+  padding-left: 20px;}
+
+.archive-title {
+  background: #111;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  border-left: 4px solid #e30613;}
+
+.archive-group {
+  margin-bottom: 20px;
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 12px;}
+
+.archive-year {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #e30613;}
+
+.archive-list {
+  list-style: none;
+  padding-left: 10px;}
+
+.archive-list li {
+  margin-bottom: 6px;}
+
+.archive-list a {
+  text-decoration: none;
+  color: #ccc;
+  font-size: 14px;
+  transition: color 0.25s ease;}
+
+.archive-list a:hover {
+  color: #fff;}
+/* ========================= AFILIADOS ======================== */
+.afiliados {    /* Afiliados– Fondo de la Base */
+  position: relative;
+  padding: 5rem 2rem;
+  background: linear-gradient(135deg, #0f172a, #868678);
+  overflow: hidden;
+  color: #365370;
+  margin-top: 4rem;
+}
+
+  .afiliados-title { /Estilo, tamaño y color del titulo AFILIADOS/
+  text-align: center;
+  font-size: 2.3rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  margin-bottom: 3rem;
+  color: #e5e7eb;}
+
+  .afiliados-grid { /Agrupación de cada Columna/
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 10px;}
+
+.afiliados-grid li a {  /* Estado base: nada activo */
+ margin-bottom: 0.75rem;}
+
+.afiliados-grid li span { /* Texto base */
+  position: relative;
+  display: inline-block;
+  padding-bottom: 4px;
+  color: inherit;
+  transition: color 0.25s ease;}
+
+.afiliados li a span::after { /* Subrayado base (oculto, sin animación visible) */
+  content: "";
+  position: absolute;
+  left: 0;  /desplazamiento inicial del border/
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: currentColor;
+  transition: width 0.3s ease, left 0.3s ease;}
+
+/* HOVER AISLADO: SOLO EL AFILIADO HOEVEREADO */
+.afiliados li a:hover span {
+  color: #8d8f92; /* usa el color que ya tengas definido */}
+
+.afiliados li a:hover span::after {
+  width: 100%;
+  left: 0;}
+
+/* Cursor correcto solo en el enlace */
+.afiliados li a {
+  cursor: pointer;}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .news-container {
+    grid-template-columns: 1fr;
+  }
+
+  .news-sidebar {
+    border-left: none;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-left: 0;
+    padding-top: 20px;
+  }
+
+  .news-grid-2x2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ================= AFILIADOS ================= */
+.afiliados-footer {
+  text-align: right;          /* alineación derecha */
+  font-size: 18px;
+  font-weight: 500;
+  color: rgba(226, 216, 216, 0.85);
+  letter-spacing: 1px;
+  padding: 3px 0px 0px 0px;}
+
+/* Resaltar número sin romper el tono */
+.afiliados-footer strong {
+  font-weight: 800;
+  color: rgba(219, 211, 211, 0.95);}
+
+/*--------------------------- PIE DE PÁGINA ---------------------------*/
+.footer{ /* General */
+background:rgb(3, 3, 26);
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding: 10px 32px;
+position: relative;
+flex-wrap:wrap;}
+
+.footer-left{ /* Izq Text */
+    background:#6c6770;
+    color:#ffffff;
+    padding:15px 30px;
+    font-size:16px;
+    font-weight:600;
+    flex:1;
+    letter-spacing:0.5px;
+    border-top-left-radius:18px;
+    border-bottom-right-radius:28px;}
+
+.footer-right a{
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 0, 0.12);
+  gap: 28px;
+  padding-right: 40px;
+  font-size: 20px;
+  transition: 3s;}
+
+.footer-right a:hover{
+    transform:scale(1.2);
+    background:rgba(255,255,255,0.15);}
+
+.bi-facebook{color:#1877F2;}
+.bi-tiktok{color:#ffffff;}
+.bi-youtube{color:#FF0000;}
+.bi-telegram{color:#0088cc;}
+.bi-whatsapp{color:#25D366;}
+.bi-instagram{color:#E4405F;}
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-right {
+    justify-content: center;
+    padding: 12px 0 0;
+  }
+}
+
+/*--------------------------- RESPONSIVE MÓBIL -----------------------*/
+@media (max-width: 1024px) {
+  .nav .menu {
+    display: none;}       /* ocultamos el menú por defecto */
+
+  .nav.active .menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 80px;               /* debajo del header */
+    left: 0;
+    width: 100%;
+    background-color: rgba(10,47,82,0.95);
+    padding: 15px 20px;}
+
+  .menu-toggle {
+    display: flex;           /* visible en mobile */
+  }
+}
