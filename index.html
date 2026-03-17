@@ -1,0 +1,270 @@
+<!DOCTYPE html> <!--vrs 5, compatible para Chrome, Firefox y Edge-->
+<html lang="es-BO"> <!--Idioma y Región-->
+
+  <head> <!--Metadatos: no se ven pero son escenciales (SEO - Título- Fuentes y Estilos)-->
+    <meta charset="UTF-8">  <!--habilitando emojis, ñ, tildes..-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Escala responsive para móviles-->
+    <!--SEO-->
+    <meta name="description" content="Portal oficial de la Confederación de Trabajadores de la Educación Urbana de Bolivia"> <!--para buscadores web-->
+    <title>CTEUB | Confederación de Trabajadores de Educación Urbana de Bolivia</title> <!--titulo pestaña-->
+    
+    <!--Estilos-->  
+    <link rel="icon" href="logocteub.ico">
+    <link rel="stylesheet" href="index.css"><!--CSS Principal-->
+  
+    <!-- Agregando Librerias BootStrap (CSS)-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"> <!--(Vinc Redes Sociales)-->
+  </head>
+
+  <body> <!--Cuerpo del Código visible-->
+
+    <!-- HEADER: |Bloque Principal: Logo - Menú - Botón - Buscador -->
+<header id="mainHeader">
+  <div class="header-container">
+    
+    <!-- LOGO -->
+      <div class="logo-container">
+       <a href="#"><img src="logocteub.png" alt="Logo" class="logo"></a>
+      </div>
+
+    <!-- NAVEGADOR DEL MENÚ PRINCIPAL -->
+    <nav class="nav">
+      <ul class="menu"> <!--Contenedor del Menú-->
+        <li class="menu-item"><a href="inicio.html">Inicio</a></li>
+        
+        <!--Incorporando Submenus-->
+        <li class="menu-item has-submenu">
+          <a href="escalafon.html">Escalafón</a>
+          <ul class="submenu">
+           <li><a href="escalafon1.html#">Ascenso de Categoria</a></li>
+           <li><a href="escalafon2.html#">Normativas</a></li>
+           <li><a href="escalafon3.html#">Guía de Tramites</a></li>
+           <li><a href="escalafon4.html#">Boletín</a></li>
+          </ul>
+        </li>
+
+        <li class="menu-item has-submenu">
+          <a href="servicios.html">Servicios</a>
+          <ul class="submenu">
+           <li><a href="servicio1.html#">Casa de Campo</a></li>
+           <li><a href="servicio2.html#">Centro Recreacional</a></li>
+           <li><a href="servicio2.html#">Personal Suplente</a></li>
+          </ul>
+        </li>
+
+        <li class="menu-item has-submenu">
+          <a href="documentos.html">Documentos</a>
+          <ul class="submenu">
+            <li><a href="documentos1.html#">Comunicados</a></li>
+            <li><a href="documentos2.html#">Resoluciones</a></li>
+            <li><a href="https://cteub-certifica.vercel.app/">Certificados</a></li>
+            <li><a href="documentos4.html#">Calendario Académico</a></li>
+            <li><a href="documentos5.html#">Propuestas y Aportes</a></li>
+          </ul>
+        </li>
+      
+        <!--Boton MAS Desplegable-->
+        <li class="more-wrapper menu-item" data-ui="dropdown">
+          <button class="more-btn" id="moreToggle">
+           Más <span class="arrow">▾</span>
+          </button>
+          <ul class="more-menu" data-menu>
+           <li><a href="https://red.minedu.gob.bo/documento">MINEDU</a></li>
+           <li><a href="https://red.minedu.gob.bo/profocom">PROFOCOM</a></li>
+           <li><a href="mas.html#">MISION Y VISION</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- BOTÓN COMPULSAS -->
+      <div class="compulsas-wrapper">
+        <button class="compulsas-btn" id="compulsasToggle">
+        Compulsas <span class="arrow">▾</span>
+        </button>
+        <ul class="compulsas-menu">
+         <li><a href="#"><i class="bi bi-geo-alt-fill"></i> La Paz</a></li>
+         <li><a href="#"><i class="bi bi-geo-alt-fill"></i> Tarija</a></li>
+         <li><a href="#"><i class="bi bi-geo-alt-fill"></i> Cochabamba</a></li>
+         <li><a href="#"><i class="bi bi-geo-alt-fill"></i> Santa Cruz</a></li>
+         <li><a href="#"><i class="bi bi-geo-alt-fill"></i> Oruro</a></li>
+         <li><a href="#"><i class="bi bi-geo-alt-fill"></i> Beni</a></li>
+         <li><a href="#"><i class="bi bi-geo-alt-fill"></i> Sucre</a></li>
+         <li><a href="#"><i class="bi bi-geo-alt-fill"></i> Pando</a></li>
+         <li><a href="#"><i class="bi bi-geo-alt-fill"></i> Potosí</a></li>
+        </ul>
+      </div>
+    
+    <div class="menu-toggle"> <!--Boton Hamburguesa-->
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+  </div>
+</header>
+
+<!--====================== SECCIÓN DE CONTENIDO ==================-->
+<main>
+<!-- ===================== HERO BANNER PRINCIPAL ===================== -->
+  <section id="heroBanner" class="hero-banner">
+    <div class="hero-overlay"></div> <!-- capa de overlay para contraste -->
+      <div class="hero-content">
+       <h1 class="hero-title">C.T.E.U.B.</h1>
+       <p class="hero-subtitle">Portal Oficial de la Confederación de Trabajadores de la Educación Urbana de Bolivia</p>
+       <a href="#afiliados" class="hero-btn">Explorar Afiliados</a>
+      </div>
+    <!-- Si usas un gif pesado, se puede colocar como fondo en CSS -->
+  </section>
+
+<!-- ===================== SECCIÓN NOTICIAS ===================== -->
+
+  <section class="news-section" id="noticias">
+    <div class="news-container">
+<!-- ===== COLUMNA DERECHA: ÍNDICE ===== -->
+      <aside class="news-sidebar">
+        <h3 class="archive-title">ARCHIVOS</h3>
+      
+        <div class="archive-group">
+          <h4 class="archive-year">Gestión 2026</h4>
+          <ul class="archive-list">
+           <li><a href="#">Enero</a></li>
+           <li><a href="#">Febrero</a></li>
+           <li><a href="#">Marzo</a></li>
+          </ul>
+        </div>
+
+        <div class="archive-group">
+          <h4 class="archive-year">Gestión 2025</h4>
+          <ul class="archive-list">
+           <li><a href="#">Diciembre</a></li>
+           <li><a href="#">Noviembre</a></li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- ===== COLUMNA IZQUIERDA: NOTICIAS ===== -->
+      <div class="news-content">
+        <div class="news-grid news-grid-2x2"> <!-- FILA DE NOTICIAS -->
+          <!-- TARJETA NOTICIA -->
+          <article class="news-card">
+            <img src="Noticias/noticia1.jpg" alt="Noticia 1">
+            <div class="news-info">
+             <span class="category">Santa Cruz</span>
+             <span class="date">16/03/2026</span>
+             <h3>Conclusión del III Ampliado Nacional Extraordinario</h3>
+            </div>
+          </article>
+
+          <article class="news-card">
+            <img src="Noticias/noticia2.jpg" alt="Noticia 2">
+            <div class="news-info">
+             <span class="category">Comunicados</span>
+             <span class="date">14/03/2025</span>
+             <h3>Pronunciamiento de la CTEUB frente a la C.N.S.</h3>
+             <h6>CTEUB exige Soluciones a la C.N.S. frente a demandas formales ya presentadas, exponiendo los motivos, en una reunion de emergencia realizada este Sabado 14 de Marzo,2026.</h6>
+            </div>
+          </article>
+
+          <article class="news-card">
+            <img src="Noticias/noticia3.jpg" alt="Noticia 3">
+            <div class="news-info">
+             <span class="category">Riveralta</span>
+             <span class="date">13/03/2026</span>
+             <h3>Audiencia Pública de Rendición de Cuentas Final-Gestión 2025 de la CNS Riberalta</h3>
+             <h6>Se realizó la Audiencia Pública de Rendición de Cuentas Final-Gestión 2025 de la CNS Riberalta , con la participación de la Prof Sarah Verdugo Olmos  delegada ante  la CSN por la C.T.E.U.B. delegado de la Federación de Maestros Urbanos , control Social, autoridades distritales,  personal medico y administrativo. Durante la audiencia se solicitó transparencia en la gestión de los recursos, seguimiento a empresas con deudas a la CNS Distrital Riberalta , soluciones a temas urgentes como medicamentos, reembolsos y suplencias . Asimismo, se transmitieron los reclamos de los maestros de Riberalta, ante lo cual el personal medico y administrativo de la CNS, asumió el compromiso de trabajar para mejorar y optimizar la atención a los asegurados. Estos espacios de rendición de cuentas fortalecen la transparencia institucional y permiten atender de manera directa las necesidades de los trabajadores de la educación y sus familias.</h6>
+            </div>
+          </article>
+
+          <article class="news-card">
+            <img src="Noticias/noticia4.jpg" alt="Noticia 4">
+            <div class="news-info">
+             <span class="category">Guayaramerin</span>
+             <span class="date">12/03/2026</span>
+             <h3>Informe CNS</h3>
+             <h6>La prof Sarah Verdugo Olmos, delegada a la C.N.S. de la CTEUB. Sostuvo una reunión con el Dr. Paulo Ricardo Guillen Salvatierra, Agente Distrital de la CNS Guayaramerin, Lic Mery Quispe ejecutiva de Guayaramerin y el directorio, para abordar y coordinar soluciones  a las principales preocupaciones de los asegurados, entre ellos el abastecimiento oportuno de medicamentos, agilización de pagos de suplencias por maternidad, procesos rápidos de los reembolsos de gastos médicos, así como también hay la urgencia de contar con servicio de hemodiálisis.La C.T.E.U.B. reafirma su compromiso de luchar por una atención de humanidad y calidad.</h6>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+  
+</main>
+<!------------- SECCIÓN AFILIADOS ------------->
+<section class="afiliados">
+    <h2 class="afiliados-title">AFILIADOS</h2>
+    <div class="afiliados-grid">
+        
+        <ul> <!-- COLUMNA 1 -->
+          <li><a href="https://www.facebook.com/groups/2448727375226730" target="_blank" rel="noopener noreferrer"><span>LA PAZ</span></a></li>
+          <li><a href="https://www.facebook.com/groups/645275695262231" target="_blank" rel="noopener noreferrer"><span>ORURO</span></a></li>
+          <li><a href="https://www.facebook.com/profile.php?id=100044012321469" target="_blank" rel="noopener noreferrer"><span>COCHABAMBA</span></a></li>
+          <li><a href="https://www.facebook.com/profile.php?id=100083354170478" target="_blank" rel="noopener noreferrer"><span>POTOSI</span></a></li>
+          <li><a href="https://www.cteublapaz.org" target="_blank" rel="noopener noreferrer"><span>TARIJA</span></a></li>
+          <li><a href="https://www.cteublapaz.org" target="_blank" rel="noopener noreferrer"><span>SANTA CRUZ</span></a></li>
+          <li><a href="https://www.cteublapaz.org" target="_blank" rel="noopener noreferrer"><span>BENI</span></a></li>
+          <li><a href="https://www.cteublapaz.org" target="_blank" rel="noopener noreferrer"><span>CHUQUISACA</span></a></li>
+          <li><a href="https://www.cteublapaz.org" target="_blank" rel="noopener noreferrer"><span>PANDO</span></a></li>
+          <li><a href="https://www.cteublapaz.org" target="_blank" rel="noopener noreferrer"><span>ANDRÉS IBÁÑEZ</span></a></li>
+          <li><a href="https://www.cteublapaz.org" target="_blank" rel="noopener noreferrer"><span>UYUNI</span></a></li>
+        </ul>
+
+        <ul> <!-- COLUMNA 2 -->
+         <li><a href="https://www.cteublapaz.org" target="_blank" rel="noopener noreferrer"><span>AIQUIQUE</span></a></li>
+         <li><a href="https://www.cteublapaz.org" target="_blank" rel="noopener noreferrer"><span>ATOCHA</span></a></li>
+         <li><a href="https://www.cteublapaz.org" target="_blank" rel="noopener noreferrer"><span>CINTIS</span></a></li>
+         <li><a href="https://www.cteublapaz.org" target="_blank" rel="noopener noreferrer"><span>BALLIVIÁN</span></a></li>
+         <li><a href="https://www.cteublapaz.org" target="_blank" rel="noopener noreferrer"><span>BERMEJO</span></a></li>
+         <li><a href="https://www.cteublapaz.org" target="_blank" rel="noopener noreferrer"><span>CHIQUITANIA</span></a></li>
+         <li><a href="https://www.cteublapaz.org" target="_blank" rel="noopener noreferrer"><span>CORDILLERA</span></a></li>
+         <li><a href="https://www.cteublapaz.org" target="_blank" rel="noopener noreferrer"><span>RIBERALTA</span></a></li>
+         <li><a href="https://www.cteublapaz.org" target="_blank" rel="noopener noreferrer"><span>ROBORÉ</span></a></li>
+         <li><a href="https://www.cteublapaz.org" target="_blank" rel="noopener noreferrer"><span>TUPIZA</span></a></li>
+        </ul>
+
+        <ul> <!-- COLUMNA 3 -->
+         <li><a href="https://www.cteublapaz.org" target="_blank" rel="noopener noreferrer"><span>PUERTO SUÁREZ</span></a></li>
+         <li><a href="https://www.cteublapaz.org" target="_blank" rel="noopener noreferrer"><span>CHACO CHAQUEÑO</span></a></li>
+         <li><a href="https://www.cteublapaz.org" target="_blank" rel="noopener noreferrer"><span>GUAYARAMERÍN</span></a></li>
+         <li><a href="https://www.cteublapaz.org" target="_blank" rel="noopener noreferrer"><span>VILLAMONTES</span></a></li>
+         <li><a href="https://www.cteublapaz.org" target="_blank" rel="noopener noreferrer"><span>VALLEGRANDE</span></a></li>
+         <li><a href="https://www.cteublapaz.org" target="_blank" rel="noopener noreferrer"><span>VILLAZÓN</span></a></li>
+         <li><a href="https://www.cteublapaz.org" target="_blank" rel="noopener noreferrer"><span>YACUIBA</span></a></li>
+         <li><a href="https://www.cteublapaz.org" target="_blank" rel="noopener noreferrer"><span>MAGDALENA</span></a></li>
+         <li><a href="https://www.cteublapaz.org" target="_blank" rel="noopener noreferrer"><span>NORTE CRUCEÑO</span></a></li>
+         <li><a href="https://www.cteublapaz.org" target="_blank" rel="noopener noreferrer"><span>UNCÍA</span></a></li>
+        </ul>
+
+    </div>
+    
+    <div class="afiliados-footer">
+     31 FEDERACIONES Y MÁS DE <strong>25K AFILIADOS</strong>
+    </div>
+    
+</section>
+
+<!------------------------ FOOTER ----------------------->
+<footer class="footer"> 
+
+    <div class="footer-left"> <!--IZQ- Derechos Reservados -->
+     <p> Desarrollado por el DEPARTAMENTO DE COMUNICACIONES de la C.T.E.U.B. &copy 2026 - Todos los derechos reservados </p>
+    </div>
+
+    <div class="footer-right"> <!--Redes Sociales con Prot"noopener noreferrer"-->
+     <a href="https://www.facebook.com/cteuboficial/"target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+     <a href="https://www.tiktok.com/@cteubbolivia?lang=es"target="_blank" rel="noopener noreferrer"aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+     <a href="https://www.youtube.com/@C.T.E.U.B.CONFEDERACION"target="_blank" rel="noopener noreferrer"aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+     <a href="https://www.telegram.com/cteub_bolivia/"target="_blank" rel="noopener noreferrer"aria-label="Instagram Reels"><i class="bi bi-telegram"></i></a>
+     <a href="https://wa.me/59169942970?text=Hola%20C.T.E.U.B.%20quiero%20informaci%C3%B3n"target="_blank" rel="noopener noreferrer"aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+     <a href="https://www.instagram.com/cteub_bolivia/"target="_blank" rel="noopener noreferrer"aria-label="Instagram Reels"><i class="bi bi-instagram"></i></a>
+    </div>
+
+</footer>
+
+<!-------------------- SECTOR SCRIPTS ----------------------->    
+    <script src="index.js" defer></script>  <!-- Animaciones JScript)-->
+  </body>
+</html>
